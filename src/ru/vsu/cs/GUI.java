@@ -2,6 +2,7 @@ package ru.vsu.cs;
 
 import javax.swing.*;
 import java.awt.*;
+import ru.vsu.cs.*;
 
 public class GUI extends JFrame{
     private JButton inputButton;
