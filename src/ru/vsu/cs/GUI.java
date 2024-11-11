@@ -3,6 +3,7 @@ package ru.vsu.cs;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.TextEvent;
 import java.util.Arrays;
 
 public class GUI extends JFrame {
@@ -13,6 +14,7 @@ public class GUI extends JFrame {
     private JButton saveAsButton;
     private JTextField outputFileField;
     private JTextField errorField;
+
     public GUI() {
         super("GUI");
         setContentPane(pane);
@@ -21,6 +23,7 @@ public class GUI extends JFrame {
         //errorField.setVisible(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 600);
+
 
         inputButton.addActionListener(new ActionListener() {
             @Override
@@ -41,7 +44,10 @@ public class GUI extends JFrame {
                     String data[] = textArea1.getText().split("\n");
                     int[][] intArr = ArrayConverter.convertToIntArray(data);
                     int[][] outputData = Evaluate.getFriendlyCount(intArr);
-                    textArea2.setText(Arrays.toString(outputData).replace("[", "").replace("]", "").replace(",", "") + "\n");
+                    for (int i = 0; i < outputData.length; i++) {
+                        textArea2.append((Arrays.toString(outputData[i]).replace("[", "").replace("]", "").replace(",", "") + "\n"));
+                    }
+                    inputButton.setEnabled(false);
                 }
 
 
