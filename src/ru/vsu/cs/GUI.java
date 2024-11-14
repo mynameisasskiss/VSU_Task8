@@ -1,7 +1,6 @@
 package ru.vsu.cs;
 
 import javax.swing.*;
-import java.awt.dnd.DropTarget;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
