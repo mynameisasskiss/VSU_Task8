@@ -1,6 +1,7 @@
 package ru.vsu.cs;
 
 import javax.swing.*;
+import java.awt.dnd.DropTarget;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
@@ -12,8 +13,6 @@ public class GUI extends JFrame {
     private JPanel pane;
     private JTextArea textArea1;
     private JTextArea textArea2;
-    private JButton saveAsButton;
-    private JTextField outputFileField;
     private JTextField errorField;
 
     public GUI() {
@@ -28,7 +27,6 @@ public class GUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 600);
 
-
         inputButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,21 +38,6 @@ public class GUI extends JFrame {
                     }
                     inputButton.setEnabled(false);
                 }
-        });
-        saveAsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                outputFileField.setVisible(true);
-                if (textArea2.getText() != "") {
-                    System.out.println(textArea2.getText());
-                    try {
-                        FileIO.writeStringToFile(outputFileField.getText(), textArea2.getText());
-                    } catch (Exception ex) {
-                        errorField.setVisible(true);
-                        errorField.setText("Ошибка при записи файла");
-                    }
-                }
-            }
         });
     }
 
@@ -96,17 +79,6 @@ public class GUI extends JFrame {
                 }
             }
         });
-
-        // Добавление разделителя
-        tableMenu.addSeparator();
-
-        // Пункт меню "Заполнить нулями"
-        JMenuItem fill0Item = new JMenuItem("Заполнить нулями");
-        tableMenu.add(fill0Item);
-        fill0Item.addActionListener(arg0 -> {
-            // TODO
-        });
-
         return tableMenu;
     }
 
